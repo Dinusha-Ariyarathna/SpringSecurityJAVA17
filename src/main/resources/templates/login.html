@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Custom styles -->
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+
+    <!-- Form Login -->
+    <form action="/login" method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <!-- OAuth2 Login Buttons -->
+    <div class="oauth-buttons">
+        <a href="/oauth2/authorization/google" class="oauth-button google">Login with Google</a>
+        <a href="/oauth2/authorization/github" class="oauth-button github">Login with GitHub</a>
+    </div>
+</div>
+</body>
+</html>

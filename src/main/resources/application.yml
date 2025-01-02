@@ -1,0 +1,102 @@
+#server:
+#  port: 8080
+#
+#logging:
+#  level:
+#    org.springframework.security: trace
+#
+#
+#spring:
+#  security:
+#    user:
+#      name: user
+#      password: password
+#    oauth2:
+#      authorizationserver:
+#        client:
+#          oidc-client:
+#            registration:
+#              client-id: "oidc-client"
+#              client-secret: "{noop}secret"
+#              client-authentication-methods:
+#                - "client_secret_basic"
+#              authorization-grant-types:
+#                - "authorization_code"
+#                - "refresh_token"
+#              redirect-uris:
+#                - "http://127.0.0.1:8080/login/oauth2/code/oidc-client"
+#              post-logout-redirect-uris:
+#                - "http://127.0.0.1:8080/"
+#              scopes:
+#                - "openid"
+#                - "profile"
+#            require-authorization-consent: true
+#
+#
+#    client:
+#        registration:
+#          google:
+#            client-id: YOUR_GOOGLE_CLIENT_ID
+#            client-secret: YOUR_GOOGLE_CLIENT_SECRET
+#            scope: profile, email
+#            redirect-uri: "{baseUrl}/login/oauth2/code/google"
+#            authorization-grant-type: authorization_code
+#            client-name: Google
+#          github:
+#            client-id: YOUR_GITHUB_CLIENT_ID
+#            client-secret: YOUR_GITHUB_CLIENT_SECRET
+#            scope: read:user
+#            redirect-uri: "{baseUrl}/login/oauth2/code/github"
+#            authorization-grant-type: authorization_code
+#            client-name: GitHub
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework.security: trace
+
+spring:
+  security:
+    user:
+      name: user
+      password: password
+
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: YOUR_GOOGLE_CLIENT_ID
+            client-secret: YOUR_GOOGLE_CLIENT_SECRET
+            scope: profile, email
+            redirect-uri: "{baseUrl}/login/oauth2/code/google"  # Use {baseUrl} to dynamically resolve the base URL
+            authorization-grant-type: authorization_code
+            client-name: Google
+          github:
+            client-id: YOUR_GITHUB_CLIENT_ID
+            client-secret: YOUR_GITHUB_CLIENT_SECRET
+            scope: read:user
+            redirect-uri: "{baseUrl}/login/oauth2/code/github"
+            authorization-grant-type: authorization_code
+            client-name: GitHub
+
+      authorizationserver:
+        client:
+          oidc-client:
+            registration:
+              client-id: "oidc-client"
+              client-secret: "{noop}secret"  # Use {noop} for plain text passwords
+              client-authentication-methods:
+                - "client_secret_basic"
+              authorization-grant-types:
+                - "authorization_code"
+                - "refresh_token"
+              redirect-uris:
+                - "http://127.0.0.1:8080/login/oauth2/code/oidc-client"  # Correct OIDC redirect URI
+              post-logout-redirect-uris:
+                - "http://127.0.0.1:8080/"
+              scopes:
+                - "openid"
+                - "profile"
+            require-authorization-consent: true
